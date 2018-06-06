@@ -1,0 +1,39 @@
+[include]
+    path = .gitconfig.local
+
+[http]
+	sslVerify = false
+[push]
+		default = simple
+[core]
+		editor = vim -c \"set fenc=utf-8\"
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	required = true
+	process = git-lfs filter-process
+
+[color]
+		ui = auto
+		diff = auto
+
+[push]
+		default = tracking
+
+[log]
+		date = iso
+		decorate = full
+
+[alias]
+		graph  = log --graph --decorate=short --date-order -C -M --pretty=format:\"<%h> %ad%x08%x08%x08%x08%x08%x08%x08%x08%x08 [%cn] %Cgreen%d%Creset %s\" --all --date=iso
+		graph1 = log --graph --decorate=short --date-order -C -M --pretty=format:\"<%h> %ad%x08%x08%x08%x08%x08%x08%x08%x08%x08 [%cn] %Cgreen%d%Creset %s\" --date=iso
+		br = branch
+		co = checkout
+		lg = log
+		st = status -sb
+		mrg = merge --no-ff
+		root = rev-parse --show-toplevel
+  ch = checkout
+[user]
+	name = Yuta TASAKA
+	email = yuta.tasaka@dena.com

@@ -1,5 +1,10 @@
 export PATH="$HOME/.rbenv/bin:$PATH" 
 eval "$(rbenv init - zsh)"
+
+export NODEBREW_ROOT=/usr/local/var/nodebrew
+#export PATH=$HOME/.nodebrew/current/bin:$PATH
+export PATH=/usr/local/var/nodebrew/current/bin:$PATH
+
 # vcs_infoロード    
 autoload -Uz vcs_info    
 # PROMPT変数内で変数参照する    
@@ -13,7 +18,7 @@ zstyle ':vcs_info:*' actionformats '(%s * %F{green}%b%f(%F{red}%a%f))'
 # プロンプト表示直前にvcs_info呼び出し    
 precmd() { vcs_info }    
 # プロンプト表示    
-PROMPT='[%n@%m %c]${vcs_info_msg_0_} %# '
+PROMPT='[%n %c]${vcs_info_msg_0_} %# '
 # 履歴ファイルの保存先
 export HISTFILE=${HOME}/.zsh_history
 # メモリに保存される履歴の件数
@@ -36,7 +41,7 @@ if [ `uname` = "Darwin" ]; then
   alias open-realm='open $(find ~/Library/Developer/CoreSimulator/Devices/$(ls -t1 ~/Library/Developer/CoreSimulator/Devices/ | head -1)/data/Containers/Data/Application -name \*.realm)'
 fi
 # tmuxinator
-source ~/.tmuxinator/tmuxinator.zsh
+#source ~/.tmuxinator/tmuxinator.zsh
 export EDITOR='vim'
 export SHELL='zsh'
 
@@ -56,10 +61,18 @@ bindkey "^R" history-incremental-search-backward
 bindkey "^U" kill-whole-line
 bindkey "^W" backward-kill-word
 
+alias k=kubectl
+alias kd="kubectl delete pod --field-selector=status.phase==Succeeded"
 
+export PATH="$PATH:$HOME/flutter/bin"
+
+export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/yuta.tasaka/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/yuta.tasaka/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f '/Users/yuta.tasaka/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/yuta.tasaka/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/Users/yuta.tasaka/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/yuta.tasaka/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f '/Users/yuta.tasaka/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/yuta.tasaka/google-cloud-sdk/completion.zsh.inc'; fi
+export PATH="$HOME/.anyenv/bin:$PATH"
+eval "$(anyenv init -)"

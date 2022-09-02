@@ -38,6 +38,3 @@
   mrg = merge --no-ff
   root = rev-parse --show-toplevel
   ch = checkout
-[user]
-  name = Yuta TASAKA
-  email = yuta.tasaka@gmail.com

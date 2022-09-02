@@ -31,6 +31,7 @@
   br = branch
   co = checkout
   poh = push origin head
+  po = push origin
   pom = push origin head
   lg = log
   st = status -sb
